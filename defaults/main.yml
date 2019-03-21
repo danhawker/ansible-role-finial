@@ -1,0 +1,15 @@
+---
+# defaults file for finial
+
+# Prefix used when deploying with Cornerstone
+finial_prefix: cornerstone
+
+# Red Hat Subs
+finial_rhsm_username_org: null
+finial_rhsm_password_key: null
+finial_rhsm_pool: null
+
+# Base Red Hat Repos to Enable
+finial_rhsm_repos:
+    - rhel-7-server-rpms
+    - rhel-7-server-extras-rpms

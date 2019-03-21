@@ -1,0 +1,34 @@
+---
+# tasks file for finial:common.yml
+
+#
+# -----------------------------------------------------------------------------
+# Common VM Tasks
+# -----------------------------------------------------------------------------
+#
+
+# Register with RHSM
+- name: "[Finial - Common] Register with Red Hat"
+  redhat_subscription:
+    state: present
+    username: "{{ finial_rhsm_username_org }}"
+    password: "{{ finial_rhsm_password_key }}"
+    pool_ids: "{{ finial_rhsm_pool }}"
+    auto_attach: no
+
+- name: "[Finial - Common] Disable all RHSM repositories"
+  rhsm_repository:
+    name: '*'
+    state: disabled
+
+- name: "[Finial - Common] Enable Base RHEL Server Repos"
+  rhsm_repository:
+    name: "{{ finial_rhsm_repos }}"
+    state: enabled
+
+# Update base packages - except WALinuxAgent in Azure
+- name: "[Finial - Common] Update Packages"
+  yum:
+    name: '*'
+    state: latest
+    exclude: WALinuxAgent

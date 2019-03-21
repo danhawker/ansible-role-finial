@@ -1,0 +1,30 @@
+---
+# tasks file for finial:azure.yml
+
+#
+# -----------------------------------------------------------------------------
+# MS Azure Specific Tasks
+# -----------------------------------------------------------------------------
+#
+
+# Import MS RPM Key
+- name: "[Finial - Azure] Import Microsoft RPM Key"
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+# Add Azure CLI Repo
+- name: "[Finial - Azure] Add Azure CLI Repository"
+  yum_repository:
+    name: azure-cli
+    description: Azure CLI
+    baseurl: https://packages.microsoft.com/yumrepos/azure-cli
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+
+# Install Azure CLI
+- name: "[Finial - Azure] Install Azure CLI"
+  yum:
+    name: azure-cli
+    state: latest
+    

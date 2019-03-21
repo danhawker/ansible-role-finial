@@ -1,0 +1,18 @@
+---
+# tasks file for finial:aws.yml
+
+#
+# -----------------------------------------------------------------------------
+# AWS Specific Tasks
+# -----------------------------------------------------------------------------
+#
+
+# AWS Gold Images have a Red Hat provided rh-amazon-rhui-client RPM package
+# that deduces which RHUI to leverage for updates. It applies this on first
+# boot, and a simple init.d script enables repos on startup. Time to remove.
+
+# Remove rh-amazon-rhui-client
+- name: "[Finial - AWS] Remove rh-amazon-rhui-client Package"
+  yum:
+    name: rh-amazon-rhui-client
+    state: absent
