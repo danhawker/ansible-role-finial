@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: finial
   author: Dan Hawker
   description: Finial - Simple role that *finishes off* the provisioning of VMs. Companion to Cornerstone.
   company:
